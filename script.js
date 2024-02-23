@@ -1,17 +1,21 @@
 // Get a reference to the #add-employees-btn element
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
+// creates an array for the salarys for the average
+let salarray = []
+
 // Collect employee data
 const collectEmployees = function() {
 
   //creates the array of employees
   let employeearray = [];
  
-
   //main loop for funtion
   while (true) {
+
+    //declares the values for first name, last name, and salary that will store user input
     let first, last, sal;
-  
+
     //gets the employees first name
     do {
       first = prompt("Enter employee's first name")
@@ -24,7 +28,7 @@ const collectEmployees = function() {
       break;
     } while(first === null)
 
-    //need to fix
+    
     //gets the employees salary
     do {
       sal = prompt("Enter employee's salary")
@@ -35,11 +39,20 @@ const collectEmployees = function() {
         }
     }while(isNaN(sal))
 
-    // creates and object for the employee
+    //converts salary string to and number and dollars
+    let dollarsal = Number(sal.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }));
+  
+    //adds the salary to an array of salarys
+    salarray.push(dollarsal)
+
+    // reates and object for the employee
     const employee = {
       firstName: first,
       lastName: last,
-      salary: sal
+      salary: dollarsal
     }
 
   // adds the above employee object to the employee array
@@ -51,18 +64,33 @@ const collectEmployees = function() {
       break;
     }
   }
-
-
+    // returns the array of employee objects
     return employeearray;
 }
 
  
-  // TODO: Get user input to create and return an array of employee objects
+ 
 
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
-  // TODO: Calculate and display the average salary
+  
+  // calculates the average of the salary array
+  let sum = 0;
+  for(let i = 0; i < salarray.length; i++){
+    sum += salarray[i];
+  }
+  const salaverage = sum / salarray.length;
+
+  //converts calculated sallary average to a dollar value
+  let dollaraverage = salaverage.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+
+  //displays the average salary in the console log
+  console.log(`The average employee salary between our ${employeesArray.length} employee(s) is ${dollaraverage}`)
+
   
 }
 
