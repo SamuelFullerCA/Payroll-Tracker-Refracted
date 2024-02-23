@@ -23,6 +23,7 @@ const collectEmployees = function() {
       break;
     } while(first === null)
 
+    //adds the furst name to the name array
     names.push(first)
 
     //gets the employees last name
@@ -51,14 +52,14 @@ const collectEmployees = function() {
     //adds the salary to an array of salarys
     salarray.push(dollarsal)
 
-    // reates and object for the employee
+    //creates and object for the employee
     const employee = {
       firstName: first,
       lastName: last,
       salary: dollarsal
     }
 
-  // adds the above employee object to the employee array
+  //adds the above employee object to the employee array
   employeearray.push(employee)
 
   //gives the option to add more employees
@@ -97,14 +98,15 @@ const displayAverageSalary = function(employeesArray) {
   
 }
 
-// Select a random employee
+//Select a random employee
 const getRandomEmployee = function(employeesArray) {
   
-  
+  //creates a function to select a random employee from the employee array
   names.random = function () {
     return names[Math.floor(Math.random()*names.length)];
 }
 
+//displays randomly selected employee in the console log
 console.log(`The winner of the employee raffle is: ${names.random()}, Congratulations!`)
 
 }
